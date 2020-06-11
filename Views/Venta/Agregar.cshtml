@@ -1,0 +1,33 @@
+﻿@using Buho.Models
+@model VentaCLS
+@{
+    Page.Title = "Ventas";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+    List<SelectListItem> listaClientes = (List<SelectListItem>)ViewBag.lista;
+}
+
+    <div class="col-md-10 m-auto">
+
+        @if (ViewBag.Error != null)
+        {
+            <script>alert('@ViewBag.Error.ToString()')</script>
+        }
+
+        @using (Html.BeginForm("Agregar", "Venta", FormMethod.Post))
+        {
+            <div>
+                @Html.LabelFor(p=>p.idCliente)
+                @Html.DropDownList("idCliente",listaClientes,"Seleccione un cliente",new { @class="form-control"})
+                @Html.ValidationMessage("idCliente", new { @class = "text-danger" })
+            </div><br />
+            <div>
+                @Html.LabelFor(p => p.fecha)
+                @Html.EditorFor(p => p.fecha, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.ValidationMessage("fecha", new { @class = "text-danger" })
+            </div><br />
+            <div style="margin:auto">
+                <input type="submit" class="btn btn-primary" value="Agregar" />
+            </div>
+        }
+    </div>
+

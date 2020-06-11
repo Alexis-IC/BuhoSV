@@ -1,0 +1,54 @@
+﻿@using Buho.Models
+@model List<ClienteCLS>
+@{
+    Page.Title = "Clientes";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+@Html.ActionLink("Agregar", "Agregar", "Cliente", new { @class = "btn btn-primary" })
+<br />
+<br />
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>@Html.LabelFor(p => Model[0].idCliente)</th>
+            <th>@Html.LabelFor(p => Model[0].nombre)</th>
+            <th>@Html.LabelFor(p => Model[0].apellido)</th>
+            <th>@Html.LabelFor(p => Model[0].dui)</th>
+            <th>@Html.LabelFor(p => Model[0].email)</th>
+            <th width="10%">Operaciones</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ClienteCLS cliente in Model)
+        {
+        <tr>
+            <td>@cliente.idCliente</td>
+            <td>@cliente.nombre</td>
+            <td>@cliente.apellido</td>
+            <td>@cliente.dui</td>
+            <td>@cliente.email</td>
+            <td>
+                @Html.ActionLink(" ", "Editar", "Cliente", new { id = cliente.idCliente }, new { @class = "far fa-edit btn btn-secondary" })
+                <button type="button" onclick="getId(@cliente.idCliente)" class="fas fa-trash-alt btn btn-danger" data-toggle="modal" data-target="#deleteModal"></button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@using (Html.BeginForm("Eliminar","Cliente",FormMethod.Post,new { @id="frmEliminar"}))
+{
+    @Html.Hidden("id");
+}
+
+<script>
+    function getId(id)
+    {
+        document.getElementById("id").value = id;
+    }
+    function eliminar()
+    {
+        document.getElementById("frmEliminar").submit();
+    }
+</script>

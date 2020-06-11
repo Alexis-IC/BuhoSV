@@ -1,0 +1,56 @@
+﻿@using Buho.Models
+@model ClienteCLS
+@{
+    Page.Title = "Editar Cliente";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+
+<div class="col-md-10 m-auto">
+
+    @using (Html.BeginForm("Editar", "Cliente", FormMethod.Post, new { @id = "frmPrincipal" }))
+    {
+        <div>
+            @Html.LabelFor(p => p.idCliente)
+            @Html.TextBoxFor(p => p.idCliente, new { @class = "form-control", @readOnly = true })
+            @Html.ValidationMessage("idCliente", new { @class = "text-danger" })
+        </div>
+        <div>
+            @Html.LabelFor(p => p.nombre)
+            @Html.TextBoxFor(p => p.nombre, new { @class = "form-control" })
+            @Html.ValidationMessage("nombre", new { @class = "text-danger" })
+        </div>
+        <div>
+            @Html.LabelFor(p => p.apellido)
+            @Html.TextBoxFor(p => p.apellido, new { @class = "form-control" })
+            @Html.ValidationMessage("apellido", new { @class = "text-danger" })
+        </div>
+        <div>
+            @Html.LabelFor(p => p.dui)
+            @Html.TextBoxFor(p => p.dui, new { @class = "form-control" })
+            @Html.ValidationMessage("dui", new { @class = "text-danger" })
+        </div>
+        <div>
+            @Html.LabelFor(p => p.direccion)
+            @Html.EditorFor(p => p.direccion, new { htmlAttributes = new { @class = "form-control" } })
+            @Html.ValidationMessage("direccion", new { @class = "text-danger" })
+        </div>
+        <div>
+            @Html.LabelFor(p => p.email)
+            @Html.TextBoxFor(p => p.email, new { @class = "form-control" })
+            @Html.ValidationMessage("email", new { @class = "text-danger" })
+        </div>
+        <div>
+            @Html.LabelFor(p => p.razonSocial)
+            @Html.TextBoxFor(p => p.razonSocial, new { @class = "form-control" })
+            @Html.ValidationMessage("razonSocial", new { @class = "text-danger" })
+        </div><br />
+        <div style="margin:auto">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmModal">Actualizar</button>
+            @Html.ActionLink("Regresar", "Index", "Cliente", null, new { @class = "btn btn-danger" })
+        </div>
+    }
+</div>
+
+<script>
+    function editar(){document.getElementById("frmPrincipal").submit();}
+</script>

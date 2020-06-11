@@ -1,0 +1,1029 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="3.0" xmlns:edmx="http://schemas.microsoft.com/ado/2009/11/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="BuhoDBModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="ID_Cliente" />
+          </Key>
+          <Property Name="ID_Cliente" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="DUI" Type="char" MaxLength="9" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Compras">
+          <Key>
+            <PropertyRef Name="ID_Compra" />
+          </Key>
+          <Property Name="ID_Compra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Proveedor" Type="int" />
+          <Property Name="ID_Impuesto" Type="int" />
+          <Property Name="Fecha" Type="datetime" />
+        </EntityType>
+        <EntityType Name="CuentaPartida">
+          <Key>
+            <PropertyRef Name="ID_CuentaPartida" />
+          </Key>
+          <Property Name="ID_CuentaPartida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Partida" Type="int" />
+          <Property Name="ID_Cuenta" Type="int" />
+          <Property Name="ID_Venta" Type="int" />
+          <Property Name="ID_Compra" Type="int" />
+          <Property Name="Debe" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="Haber" Type="decimal" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="Cuentas">
+          <Key>
+            <PropertyRef Name="ID_Cuenta" />
+          </Key>
+          <Property Name="ID_Cuenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Grupo" Type="char" MaxLength="4" />
+          <Property Name="Subgrupo" Type="char" MaxLength="4" />
+          <Property Name="Cuenta" Type="char" MaxLength="4" />
+          <Property Name="Subcuenta" Type="char" MaxLength="4" />
+          <Property Name="CuentaDetalle" Type="char" MaxLength="4" />
+          <Property Name="NombreCuenta" Type="varchar" MaxLength="100" />
+        </EntityType>
+        <EntityType Name="DetalleCompras">
+          <Key>
+            <PropertyRef Name="ID_DetalleCompra" />
+          </Key>
+          <Property Name="ID_DetalleCompra" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Compra" Type="int" />
+          <Property Name="Nombre" Type="varchar" MaxLength="25" />
+          <Property Name="Cantidad" Type="int" />
+          <Property Name="Precio" Type="decimal" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="DetalleVentas">
+          <Key>
+            <PropertyRef Name="ID_DetalleVenta" />
+          </Key>
+          <Property Name="ID_DetalleVenta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Venta" Type="int" />
+          <Property Name="ID_Producto" Type="int" />
+          <Property Name="Cantidad" Type="int" />
+          <Property Name="Precio" Type="decimal" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="Empresas">
+          <Key>
+            <PropertyRef Name="ID_Empresa" />
+          </Key>
+          <Property Name="ID_Empresa" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Usuario" Type="int" />
+          <Property Name="NombreComercial" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NombreAbreviado" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="RepresentanteLegal" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="ActividadEmpresa" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="100" Nullable="false" />
+          <Property Name="Telefono" Type="char" MaxLength="8" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="NIT" Type="char" MaxLength="14" Nullable="false" />
+          <Property Name="Registro" Type="varchar" MaxLength="50" />
+          <Property Name="CapAutorizado" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="CapSuscrito" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="CapPagado" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="Estado" Type="int" />
+        </EntityType>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="ID_Estado" />
+          </Key>
+          <Property Name="ID_Estado" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="25" />
+        </EntityType>
+        <EntityType Name="Impuestos">
+          <Key>
+            <PropertyRef Name="ID_Impuesto" />
+          </Key>
+          <Property Name="ID_Impuesto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="25" />
+          <Property Name="Valor" Type="decimal" Precision="8" Scale="2" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+        </EntityType>
+        <EntityType Name="Partidas">
+          <Key>
+            <PropertyRef Name="ID_Partida" />
+          </Key>
+          <Property Name="ID_Partida" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Usuario" Type="int" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="50" />
+          <Property Name="Cheque" Type="int" />
+          <Property Name="Fecha" Type="datetime" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="ID_Producto" />
+          </Key>
+          <Property Name="ID_Producto" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="25" />
+          <Property Name="Descripcion" Type="varchar" MaxLength="200" />
+          <Property Name="Imagen" Type="varchar" MaxLength="200" />
+          <Property Name="Precio" Type="decimal" Precision="8" Scale="2" />
+        </EntityType>
+        <EntityType Name="Proveedores">
+          <Key>
+            <PropertyRef Name="ID_Proveedor" />
+          </Key>
+          <Property Name="ID_Proveedor" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="DUI" Type="char" MaxLength="9" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="RazonSocial" Type="varchar" MaxLength="25" Nullable="false" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="ID_Usuario" />
+          </Key>
+          <Property Name="ID_Usuario" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="Nombre" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="Apellido" Type="varchar" MaxLength="25" Nullable="false" />
+          <Property Name="DUI" Type="char" MaxLength="9" Nullable="false" />
+          <Property Name="Direccion" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Email" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="Usuario" Type="varchar" MaxLength="25" />
+          <Property Name="Clave" Type="varchar" MaxLength="60" />
+        </EntityType>
+        <EntityType Name="Ventas">
+          <Key>
+            <PropertyRef Name="ID_Venta" />
+          </Key>
+          <Property Name="ID_Venta" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="ID_Cliente" Type="int" />
+          <Property Name="ID_Impuesto" Type="int" />
+          <Property Name="Fecha" Type="datetime" />
+        </EntityType>
+        <Association Name="FK__Compras__ID_Impu__4F7CD00D">
+          <End Role="Impuestos" Type="Self.Impuestos" Multiplicity="0..1" />
+          <End Role="Compras" Type="Self.Compras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Impuestos">
+              <PropertyRef Name="ID_Impuesto" />
+            </Principal>
+            <Dependent Role="Compras">
+              <PropertyRef Name="ID_Impuesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Compras__ID_Prov__4E88ABD4">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="0..1" />
+          <End Role="Compras" Type="Self.Compras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="ID_Proveedor" />
+            </Principal>
+            <Dependent Role="Compras">
+              <PropertyRef Name="ID_Proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CuentaPar__ID_Co__5CD6CB2B">
+          <End Role="Compras" Type="Self.Compras" Multiplicity="0..1" />
+          <End Role="CuentaPartida" Type="Self.CuentaPartida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compras">
+              <PropertyRef Name="ID_Compra" />
+            </Principal>
+            <Dependent Role="CuentaPartida">
+              <PropertyRef Name="ID_Compra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CuentaPar__ID_Cu__5AEE82B9">
+          <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="0..1" />
+          <End Role="CuentaPartida" Type="Self.CuentaPartida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuentas">
+              <PropertyRef Name="ID_Cuenta" />
+            </Principal>
+            <Dependent Role="CuentaPartida">
+              <PropertyRef Name="ID_Cuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CuentaPar__ID_Pa__59FA5E80">
+          <End Role="Partidas" Type="Self.Partidas" Multiplicity="0..1" />
+          <End Role="CuentaPartida" Type="Self.CuentaPartida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partidas">
+              <PropertyRef Name="ID_Partida" />
+            </Principal>
+            <Dependent Role="CuentaPartida">
+              <PropertyRef Name="ID_Partida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CuentaPar__ID_Ve__5BE2A6F2">
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="0..1" />
+          <End Role="CuentaPartida" Type="Self.CuentaPartida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="ID_Venta" />
+            </Principal>
+            <Dependent Role="CuentaPartida">
+              <PropertyRef Name="ID_Venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleCo__ID_Co__52593CB8">
+          <End Role="Compras" Type="Self.Compras" Multiplicity="0..1" />
+          <End Role="DetalleCompras" Type="Self.DetalleCompras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compras">
+              <PropertyRef Name="ID_Compra" />
+            </Principal>
+            <Dependent Role="DetalleCompras">
+              <PropertyRef Name="ID_Compra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleVe__ID_Pr__4BAC3F29">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+          <End Role="DetalleVentas" Type="Self.DetalleVentas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="ID_Producto" />
+            </Principal>
+            <Dependent Role="DetalleVentas">
+              <PropertyRef Name="ID_Producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleVe__ID_Ve__4AB81AF0">
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="0..1" />
+          <End Role="DetalleVentas" Type="Self.DetalleVentas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="ID_Venta" />
+            </Principal>
+            <Dependent Role="DetalleVentas">
+              <PropertyRef Name="ID_Venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empresas__Estado__3C69FB99">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="0..1" />
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="ID_Estado" />
+            </Principal>
+            <Dependent Role="Empresas">
+              <PropertyRef Name="Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empresas__ID_Usu__3B75D760">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="ID_Usuario" />
+            </Principal>
+            <Dependent Role="Empresas">
+              <PropertyRef Name="ID_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Partidas__ID_Usu__5535A963">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Partidas" Type="Self.Partidas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="ID_Usuario" />
+            </Principal>
+            <Dependent Role="Partidas">
+              <PropertyRef Name="ID_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ventas__ID_Clien__44FF419A">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="ID_Cliente" />
+            </Principal>
+            <Dependent Role="Ventas">
+              <PropertyRef Name="ID_Cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ventas__ID_Impue__45F365D3">
+          <End Role="Impuestos" Type="Self.Impuestos" Multiplicity="0..1" />
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Impuestos">
+              <PropertyRef Name="ID_Impuesto" />
+            </Principal>
+            <Dependent Role="Ventas">
+              <PropertyRef Name="ID_Impuesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BuhoDBModelStoreContainer">
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Compras" EntityType="Self.Compras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="CuentaPartida" EntityType="Self.CuentaPartida" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Cuentas" EntityType="Self.Cuentas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetalleCompras" EntityType="Self.DetalleCompras" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="DetalleVentas" EntityType="Self.DetalleVentas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Empresas" EntityType="Self.Empresas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Estados" EntityType="Self.Estados" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Impuestos" EntityType="Self.Impuestos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Partidas" EntityType="Self.Partidas" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Proveedores" EntityType="Self.Proveedores" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" Schema="dbo" store:Type="Tables" />
+          <EntitySet Name="Ventas" EntityType="Self.Ventas" Schema="dbo" store:Type="Tables" />
+          <AssociationSet Name="FK__Compras__ID_Impu__4F7CD00D" Association="Self.FK__Compras__ID_Impu__4F7CD00D">
+            <End Role="Impuestos" EntitySet="Impuestos" />
+            <End Role="Compras" EntitySet="Compras" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Compras__ID_Prov__4E88ABD4" Association="Self.FK__Compras__ID_Prov__4E88ABD4">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="Compras" EntitySet="Compras" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CuentaPar__ID_Co__5CD6CB2B" Association="Self.FK__CuentaPar__ID_Co__5CD6CB2B">
+            <End Role="Compras" EntitySet="Compras" />
+            <End Role="CuentaPartida" EntitySet="CuentaPartida" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CuentaPar__ID_Cu__5AEE82B9" Association="Self.FK__CuentaPar__ID_Cu__5AEE82B9">
+            <End Role="Cuentas" EntitySet="Cuentas" />
+            <End Role="CuentaPartida" EntitySet="CuentaPartida" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CuentaPar__ID_Pa__59FA5E80" Association="Self.FK__CuentaPar__ID_Pa__59FA5E80">
+            <End Role="Partidas" EntitySet="Partidas" />
+            <End Role="CuentaPartida" EntitySet="CuentaPartida" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CuentaPar__ID_Ve__5BE2A6F2" Association="Self.FK__CuentaPar__ID_Ve__5BE2A6F2">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="CuentaPartida" EntitySet="CuentaPartida" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleCo__ID_Co__52593CB8" Association="Self.FK__DetalleCo__ID_Co__52593CB8">
+            <End Role="Compras" EntitySet="Compras" />
+            <End Role="DetalleCompras" EntitySet="DetalleCompras" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleVe__ID_Pr__4BAC3F29" Association="Self.FK__DetalleVe__ID_Pr__4BAC3F29">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="DetalleVentas" EntitySet="DetalleVentas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleVe__ID_Ve__4AB81AF0" Association="Self.FK__DetalleVe__ID_Ve__4AB81AF0">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="DetalleVentas" EntitySet="DetalleVentas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empresas__Estado__3C69FB99" Association="Self.FK__Empresas__Estado__3C69FB99">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Empresas" EntitySet="Empresas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empresas__ID_Usu__3B75D760" Association="Self.FK__Empresas__ID_Usu__3B75D760">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Empresas" EntitySet="Empresas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Partidas__ID_Usu__5535A963" Association="Self.FK__Partidas__ID_Usu__5535A963">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Partidas" EntitySet="Partidas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ventas__ID_Clien__44FF419A" Association="Self.FK__Ventas__ID_Clien__44FF419A">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ventas__ID_Impue__45F365D3" Association="Self.FK__Ventas__ID_Impue__45F365D3">
+            <End Role="Impuestos" EntitySet="Impuestos" />
+            <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="BuhoDBModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
+        <EntityType Name="Clientes">
+          <Key>
+            <PropertyRef Name="ID_Cliente" />
+          </Key>
+          <Property Name="ID_Cliente" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DUI" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RazonSocial" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Ventas" Relationship="Self.FK__Ventas__ID_Clien__44FF419A" FromRole="Clientes" ToRole="Ventas" />
+        </EntityType>
+        <EntityType Name="Compras">
+          <Key>
+            <PropertyRef Name="ID_Compra" />
+          </Key>
+          <Property Name="ID_Compra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Proveedor" Type="Int32" />
+          <Property Name="ID_Impuesto" Type="Int32" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Impuestos" Relationship="Self.FK__Compras__ID_Impu__4F7CD00D" FromRole="Compras" ToRole="Impuestos" />
+          <NavigationProperty Name="Proveedores" Relationship="Self.FK__Compras__ID_Prov__4E88ABD4" FromRole="Compras" ToRole="Proveedores" />
+          <NavigationProperty Name="CuentaPartida" Relationship="Self.FK__CuentaPar__ID_Co__5CD6CB2B" FromRole="Compras" ToRole="CuentaPartida" />
+          <NavigationProperty Name="DetalleCompras" Relationship="Self.FK__DetalleCo__ID_Co__52593CB8" FromRole="Compras" ToRole="DetalleCompras" />
+        </EntityType>
+        <EntityType Name="CuentaPartida">
+          <Key>
+            <PropertyRef Name="ID_CuentaPartida" />
+          </Key>
+          <Property Name="ID_CuentaPartida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Partida" Type="Int32" />
+          <Property Name="ID_Cuenta" Type="Int32" />
+          <Property Name="ID_Venta" Type="Int32" />
+          <Property Name="ID_Compra" Type="Int32" />
+          <Property Name="Debe" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Haber" Type="Decimal" Precision="8" Scale="2" />
+          <NavigationProperty Name="Compras" Relationship="Self.FK__CuentaPar__ID_Co__5CD6CB2B" FromRole="CuentaPartida" ToRole="Compras" />
+          <NavigationProperty Name="Cuentas" Relationship="Self.FK__CuentaPar__ID_Cu__5AEE82B9" FromRole="CuentaPartida" ToRole="Cuentas" />
+          <NavigationProperty Name="Partidas" Relationship="Self.FK__CuentaPar__ID_Pa__59FA5E80" FromRole="CuentaPartida" ToRole="Partidas" />
+          <NavigationProperty Name="Ventas" Relationship="Self.FK__CuentaPar__ID_Ve__5BE2A6F2" FromRole="CuentaPartida" ToRole="Ventas" />
+        </EntityType>
+        <EntityType Name="Cuentas">
+          <Key>
+            <PropertyRef Name="ID_Cuenta" />
+          </Key>
+          <Property Name="ID_Cuenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Grupo" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="Subgrupo" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="Cuenta" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="Subcuenta" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="CuentaDetalle" Type="String" MaxLength="4" FixedLength="true" Unicode="false" />
+          <Property Name="NombreCuenta" Type="String" MaxLength="100" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="CuentaPartida" Relationship="Self.FK__CuentaPar__ID_Cu__5AEE82B9" FromRole="Cuentas" ToRole="CuentaPartida" />
+        </EntityType>
+        <EntityType Name="DetalleCompras">
+          <Key>
+            <PropertyRef Name="ID_DetalleCompra" />
+          </Key>
+          <Property Name="ID_DetalleCompra" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Compra" Type="Int32" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Cantidad" Type="Int32" />
+          <Property Name="Precio" Type="Decimal" Precision="8" Scale="2" />
+          <NavigationProperty Name="Compras" Relationship="Self.FK__DetalleCo__ID_Co__52593CB8" FromRole="DetalleCompras" ToRole="Compras" />
+        </EntityType>
+        <EntityType Name="DetalleVentas">
+          <Key>
+            <PropertyRef Name="ID_DetalleVenta" />
+          </Key>
+          <Property Name="ID_DetalleVenta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Venta" Type="Int32" />
+          <Property Name="ID_Producto" Type="Int32" />
+          <Property Name="Cantidad" Type="Int32" />
+          <Property Name="Precio" Type="Decimal" Precision="8" Scale="2" />
+          <NavigationProperty Name="Productos" Relationship="Self.FK__DetalleVe__ID_Pr__4BAC3F29" FromRole="DetalleVentas" ToRole="Productos" />
+          <NavigationProperty Name="Ventas" Relationship="Self.FK__DetalleVe__ID_Ve__4AB81AF0" FromRole="DetalleVentas" ToRole="Ventas" />
+        </EntityType>
+        <EntityType Name="Empresas">
+          <Key>
+            <PropertyRef Name="ID_Empresa" />
+          </Key>
+          <Property Name="ID_Empresa" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Usuario" Type="Int32" />
+          <Property Name="NombreComercial" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NombreAbreviado" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RepresentanteLegal" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="ActividadEmpresa" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="100" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Telefono" Type="String" MaxLength="8" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="NIT" Type="String" MaxLength="14" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Registro" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="CapAutorizado" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="CapSuscrito" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="CapPagado" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Estado" Type="Int32" />
+          <NavigationProperty Name="Estados" Relationship="Self.FK__Empresas__Estado__3C69FB99" FromRole="Empresas" ToRole="Estados" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Empresas__ID_Usu__3B75D760" FromRole="Empresas" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Estados">
+          <Key>
+            <PropertyRef Name="ID_Estado" />
+          </Key>
+          <Property Name="ID_Estado" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Empresas" Relationship="Self.FK__Empresas__Estado__3C69FB99" FromRole="Estados" ToRole="Empresas" />
+        </EntityType>
+        <EntityType Name="Impuestos">
+          <Key>
+            <PropertyRef Name="ID_Impuesto" />
+          </Key>
+          <Property Name="ID_Impuesto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Valor" Type="Decimal" Precision="8" Scale="2" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Compras" Relationship="Self.FK__Compras__ID_Impu__4F7CD00D" FromRole="Impuestos" ToRole="Compras" />
+          <NavigationProperty Name="Ventas" Relationship="Self.FK__Ventas__ID_Impue__45F365D3" FromRole="Impuestos" ToRole="Ventas" />
+        </EntityType>
+        <EntityType Name="Partidas">
+          <Key>
+            <PropertyRef Name="ID_Partida" />
+          </Key>
+          <Property Name="ID_Partida" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Usuario" Type="Int32" />
+          <Property Name="Descripcion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="Cheque" Type="Int32" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="CuentaPartida" Relationship="Self.FK__CuentaPar__ID_Pa__59FA5E80" FromRole="Partidas" ToRole="CuentaPartida" />
+          <NavigationProperty Name="Usuarios" Relationship="Self.FK__Partidas__ID_Usu__5535A963" FromRole="Partidas" ToRole="Usuarios" />
+        </EntityType>
+        <EntityType Name="Productos">
+          <Key>
+            <PropertyRef Name="ID_Producto" />
+          </Key>
+          <Property Name="ID_Producto" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Descripcion" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Imagen" Type="String" MaxLength="200" FixedLength="false" Unicode="false" />
+          <Property Name="Precio" Type="Decimal" Precision="8" Scale="2" />
+          <NavigationProperty Name="DetalleVentas" Relationship="Self.FK__DetalleVe__ID_Pr__4BAC3F29" FromRole="Productos" ToRole="DetalleVentas" />
+        </EntityType>
+        <EntityType Name="Proveedores">
+          <Key>
+            <PropertyRef Name="ID_Proveedor" />
+          </Key>
+          <Property Name="ID_Proveedor" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DUI" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="RazonSocial" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <NavigationProperty Name="Compras" Relationship="Self.FK__Compras__ID_Prov__4E88ABD4" FromRole="Proveedores" ToRole="Compras" />
+        </EntityType>
+        <EntityType Name="Usuarios">
+          <Key>
+            <PropertyRef Name="ID_Usuario" />
+          </Key>
+          <Property Name="ID_Usuario" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Nombre" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Apellido" Type="String" MaxLength="25" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="DUI" Type="String" MaxLength="9" FixedLength="true" Unicode="false" Nullable="false" />
+          <Property Name="Direccion" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="false" Nullable="false" />
+          <Property Name="Usuario" Type="String" MaxLength="25" FixedLength="false" Unicode="false" />
+          <Property Name="Clave" Type="String" MaxLength="60" FixedLength="false" Unicode="false" />
+          <NavigationProperty Name="Empresas" Relationship="Self.FK__Empresas__ID_Usu__3B75D760" FromRole="Usuarios" ToRole="Empresas" />
+          <NavigationProperty Name="Partidas" Relationship="Self.FK__Partidas__ID_Usu__5535A963" FromRole="Usuarios" ToRole="Partidas" />
+        </EntityType>
+        <EntityType Name="Ventas">
+          <Key>
+            <PropertyRef Name="ID_Venta" />
+          </Key>
+          <Property Name="ID_Venta" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="ID_Cliente" Type="Int32" />
+          <Property Name="ID_Impuesto" Type="Int32" />
+          <Property Name="Fecha" Type="DateTime" Precision="3" />
+          <NavigationProperty Name="Clientes" Relationship="Self.FK__Ventas__ID_Clien__44FF419A" FromRole="Ventas" ToRole="Clientes" />
+          <NavigationProperty Name="CuentaPartida" Relationship="Self.FK__CuentaPar__ID_Ve__5BE2A6F2" FromRole="Ventas" ToRole="CuentaPartida" />
+          <NavigationProperty Name="DetalleVentas" Relationship="Self.FK__DetalleVe__ID_Ve__4AB81AF0" FromRole="Ventas" ToRole="DetalleVentas" />
+          <NavigationProperty Name="Impuestos" Relationship="Self.FK__Ventas__ID_Impue__45F365D3" FromRole="Ventas" ToRole="Impuestos" />
+        </EntityType>
+        <Association Name="FK__Ventas__ID_Clien__44FF419A">
+          <End Role="Clientes" Type="Self.Clientes" Multiplicity="0..1" />
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Clientes">
+              <PropertyRef Name="ID_Cliente" />
+            </Principal>
+            <Dependent Role="Ventas">
+              <PropertyRef Name="ID_Cliente" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Compras__ID_Impu__4F7CD00D">
+          <End Role="Impuestos" Type="Self.Impuestos" Multiplicity="0..1" />
+          <End Role="Compras" Type="Self.Compras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Impuestos">
+              <PropertyRef Name="ID_Impuesto" />
+            </Principal>
+            <Dependent Role="Compras">
+              <PropertyRef Name="ID_Impuesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Compras__ID_Prov__4E88ABD4">
+          <End Role="Proveedores" Type="Self.Proveedores" Multiplicity="0..1" />
+          <End Role="Compras" Type="Self.Compras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Proveedores">
+              <PropertyRef Name="ID_Proveedor" />
+            </Principal>
+            <Dependent Role="Compras">
+              <PropertyRef Name="ID_Proveedor" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CuentaPar__ID_Co__5CD6CB2B">
+          <End Role="Compras" Type="Self.Compras" Multiplicity="0..1" />
+          <End Role="CuentaPartida" Type="Self.CuentaPartida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compras">
+              <PropertyRef Name="ID_Compra" />
+            </Principal>
+            <Dependent Role="CuentaPartida">
+              <PropertyRef Name="ID_Compra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleCo__ID_Co__52593CB8">
+          <End Role="Compras" Type="Self.Compras" Multiplicity="0..1" />
+          <End Role="DetalleCompras" Type="Self.DetalleCompras" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Compras">
+              <PropertyRef Name="ID_Compra" />
+            </Principal>
+            <Dependent Role="DetalleCompras">
+              <PropertyRef Name="ID_Compra" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CuentaPar__ID_Cu__5AEE82B9">
+          <End Role="Cuentas" Type="Self.Cuentas" Multiplicity="0..1" />
+          <End Role="CuentaPartida" Type="Self.CuentaPartida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Cuentas">
+              <PropertyRef Name="ID_Cuenta" />
+            </Principal>
+            <Dependent Role="CuentaPartida">
+              <PropertyRef Name="ID_Cuenta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CuentaPar__ID_Pa__59FA5E80">
+          <End Role="Partidas" Type="Self.Partidas" Multiplicity="0..1" />
+          <End Role="CuentaPartida" Type="Self.CuentaPartida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Partidas">
+              <PropertyRef Name="ID_Partida" />
+            </Principal>
+            <Dependent Role="CuentaPartida">
+              <PropertyRef Name="ID_Partida" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__CuentaPar__ID_Ve__5BE2A6F2">
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="0..1" />
+          <End Role="CuentaPartida" Type="Self.CuentaPartida" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="ID_Venta" />
+            </Principal>
+            <Dependent Role="CuentaPartida">
+              <PropertyRef Name="ID_Venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleVe__ID_Pr__4BAC3F29">
+          <End Role="Productos" Type="Self.Productos" Multiplicity="0..1" />
+          <End Role="DetalleVentas" Type="Self.DetalleVentas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Productos">
+              <PropertyRef Name="ID_Producto" />
+            </Principal>
+            <Dependent Role="DetalleVentas">
+              <PropertyRef Name="ID_Producto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__DetalleVe__ID_Ve__4AB81AF0">
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="0..1" />
+          <End Role="DetalleVentas" Type="Self.DetalleVentas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Ventas">
+              <PropertyRef Name="ID_Venta" />
+            </Principal>
+            <Dependent Role="DetalleVentas">
+              <PropertyRef Name="ID_Venta" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empresas__Estado__3C69FB99">
+          <End Role="Estados" Type="Self.Estados" Multiplicity="0..1" />
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Estados">
+              <PropertyRef Name="ID_Estado" />
+            </Principal>
+            <Dependent Role="Empresas">
+              <PropertyRef Name="Estado" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Empresas__ID_Usu__3B75D760">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Empresas" Type="Self.Empresas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="ID_Usuario" />
+            </Principal>
+            <Dependent Role="Empresas">
+              <PropertyRef Name="ID_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Ventas__ID_Impue__45F365D3">
+          <End Role="Impuestos" Type="Self.Impuestos" Multiplicity="0..1" />
+          <End Role="Ventas" Type="Self.Ventas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Impuestos">
+              <PropertyRef Name="ID_Impuesto" />
+            </Principal>
+            <Dependent Role="Ventas">
+              <PropertyRef Name="ID_Impuesto" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK__Partidas__ID_Usu__5535A963">
+          <End Role="Usuarios" Type="Self.Usuarios" Multiplicity="0..1" />
+          <End Role="Partidas" Type="Self.Partidas" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Usuarios">
+              <PropertyRef Name="ID_Usuario" />
+            </Principal>
+            <Dependent Role="Partidas">
+              <PropertyRef Name="ID_Usuario" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityContainer Name="BuhoDBEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="Clientes" EntityType="Self.Clientes" />
+          <EntitySet Name="Compras" EntityType="Self.Compras" />
+          <EntitySet Name="CuentaPartida" EntityType="Self.CuentaPartida" />
+          <EntitySet Name="Cuentas" EntityType="Self.Cuentas" />
+          <EntitySet Name="DetalleCompras" EntityType="Self.DetalleCompras" />
+          <EntitySet Name="DetalleVentas" EntityType="Self.DetalleVentas" />
+          <EntitySet Name="Empresas" EntityType="Self.Empresas" />
+          <EntitySet Name="Estados" EntityType="Self.Estados" />
+          <EntitySet Name="Impuestos" EntityType="Self.Impuestos" />
+          <EntitySet Name="Partidas" EntityType="Self.Partidas" />
+          <EntitySet Name="Productos" EntityType="Self.Productos" />
+          <EntitySet Name="Proveedores" EntityType="Self.Proveedores" />
+          <EntitySet Name="Usuarios" EntityType="Self.Usuarios" />
+          <EntitySet Name="Ventas" EntityType="Self.Ventas" />
+          <AssociationSet Name="FK__Ventas__ID_Clien__44FF419A" Association="Self.FK__Ventas__ID_Clien__44FF419A">
+            <End Role="Clientes" EntitySet="Clientes" />
+            <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Compras__ID_Impu__4F7CD00D" Association="Self.FK__Compras__ID_Impu__4F7CD00D">
+            <End Role="Impuestos" EntitySet="Impuestos" />
+            <End Role="Compras" EntitySet="Compras" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Compras__ID_Prov__4E88ABD4" Association="Self.FK__Compras__ID_Prov__4E88ABD4">
+            <End Role="Proveedores" EntitySet="Proveedores" />
+            <End Role="Compras" EntitySet="Compras" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CuentaPar__ID_Co__5CD6CB2B" Association="Self.FK__CuentaPar__ID_Co__5CD6CB2B">
+            <End Role="Compras" EntitySet="Compras" />
+            <End Role="CuentaPartida" EntitySet="CuentaPartida" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleCo__ID_Co__52593CB8" Association="Self.FK__DetalleCo__ID_Co__52593CB8">
+            <End Role="Compras" EntitySet="Compras" />
+            <End Role="DetalleCompras" EntitySet="DetalleCompras" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CuentaPar__ID_Cu__5AEE82B9" Association="Self.FK__CuentaPar__ID_Cu__5AEE82B9">
+            <End Role="Cuentas" EntitySet="Cuentas" />
+            <End Role="CuentaPartida" EntitySet="CuentaPartida" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CuentaPar__ID_Pa__59FA5E80" Association="Self.FK__CuentaPar__ID_Pa__59FA5E80">
+            <End Role="Partidas" EntitySet="Partidas" />
+            <End Role="CuentaPartida" EntitySet="CuentaPartida" />
+          </AssociationSet>
+          <AssociationSet Name="FK__CuentaPar__ID_Ve__5BE2A6F2" Association="Self.FK__CuentaPar__ID_Ve__5BE2A6F2">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="CuentaPartida" EntitySet="CuentaPartida" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleVe__ID_Pr__4BAC3F29" Association="Self.FK__DetalleVe__ID_Pr__4BAC3F29">
+            <End Role="Productos" EntitySet="Productos" />
+            <End Role="DetalleVentas" EntitySet="DetalleVentas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__DetalleVe__ID_Ve__4AB81AF0" Association="Self.FK__DetalleVe__ID_Ve__4AB81AF0">
+            <End Role="Ventas" EntitySet="Ventas" />
+            <End Role="DetalleVentas" EntitySet="DetalleVentas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empresas__Estado__3C69FB99" Association="Self.FK__Empresas__Estado__3C69FB99">
+            <End Role="Estados" EntitySet="Estados" />
+            <End Role="Empresas" EntitySet="Empresas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Empresas__ID_Usu__3B75D760" Association="Self.FK__Empresas__ID_Usu__3B75D760">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Empresas" EntitySet="Empresas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Ventas__ID_Impue__45F365D3" Association="Self.FK__Ventas__ID_Impue__45F365D3">
+            <End Role="Impuestos" EntitySet="Impuestos" />
+            <End Role="Ventas" EntitySet="Ventas" />
+          </AssociationSet>
+          <AssociationSet Name="FK__Partidas__ID_Usu__5535A963" Association="Self.FK__Partidas__ID_Usu__5535A963">
+            <End Role="Usuarios" EntitySet="Usuarios" />
+            <End Role="Partidas" EntitySet="Partidas" />
+          </AssociationSet>
+        </EntityContainer>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="BuhoDBModelStoreContainer" CdmEntityContainer="BuhoDBEntities">
+          <EntitySetMapping Name="Clientes">
+            <EntityTypeMapping TypeName="BuhoDBModel.Clientes">
+              <MappingFragment StoreEntitySet="Clientes">
+                <ScalarProperty Name="ID_Cliente" ColumnName="ID_Cliente" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="DUI" ColumnName="DUI" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Compras">
+            <EntityTypeMapping TypeName="BuhoDBModel.Compras">
+              <MappingFragment StoreEntitySet="Compras">
+                <ScalarProperty Name="ID_Compra" ColumnName="ID_Compra" />
+                <ScalarProperty Name="ID_Proveedor" ColumnName="ID_Proveedor" />
+                <ScalarProperty Name="ID_Impuesto" ColumnName="ID_Impuesto" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="CuentaPartida">
+            <EntityTypeMapping TypeName="BuhoDBModel.CuentaPartida">
+              <MappingFragment StoreEntitySet="CuentaPartida">
+                <ScalarProperty Name="ID_CuentaPartida" ColumnName="ID_CuentaPartida" />
+                <ScalarProperty Name="ID_Partida" ColumnName="ID_Partida" />
+                <ScalarProperty Name="ID_Cuenta" ColumnName="ID_Cuenta" />
+                <ScalarProperty Name="ID_Venta" ColumnName="ID_Venta" />
+                <ScalarProperty Name="ID_Compra" ColumnName="ID_Compra" />
+                <ScalarProperty Name="Debe" ColumnName="Debe" />
+                <ScalarProperty Name="Haber" ColumnName="Haber" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Cuentas">
+            <EntityTypeMapping TypeName="BuhoDBModel.Cuentas">
+              <MappingFragment StoreEntitySet="Cuentas">
+                <ScalarProperty Name="ID_Cuenta" ColumnName="ID_Cuenta" />
+                <ScalarProperty Name="Grupo" ColumnName="Grupo" />
+                <ScalarProperty Name="Subgrupo" ColumnName="Subgrupo" />
+                <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+                <ScalarProperty Name="Subcuenta" ColumnName="Subcuenta" />
+                <ScalarProperty Name="CuentaDetalle" ColumnName="CuentaDetalle" />
+                <ScalarProperty Name="NombreCuenta" ColumnName="NombreCuenta" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleCompras">
+            <EntityTypeMapping TypeName="BuhoDBModel.DetalleCompras">
+              <MappingFragment StoreEntitySet="DetalleCompras">
+                <ScalarProperty Name="ID_DetalleCompra" ColumnName="ID_DetalleCompra" />
+                <ScalarProperty Name="ID_Compra" ColumnName="ID_Compra" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="DetalleVentas">
+            <EntityTypeMapping TypeName="BuhoDBModel.DetalleVentas">
+              <MappingFragment StoreEntitySet="DetalleVentas">
+                <ScalarProperty Name="ID_DetalleVenta" ColumnName="ID_DetalleVenta" />
+                <ScalarProperty Name="ID_Venta" ColumnName="ID_Venta" />
+                <ScalarProperty Name="ID_Producto" ColumnName="ID_Producto" />
+                <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Empresas">
+            <EntityTypeMapping TypeName="BuhoDBModel.Empresas">
+              <MappingFragment StoreEntitySet="Empresas">
+                <ScalarProperty Name="ID_Empresa" ColumnName="ID_Empresa" />
+                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+                <ScalarProperty Name="NombreComercial" ColumnName="NombreComercial" />
+                <ScalarProperty Name="NombreAbreviado" ColumnName="NombreAbreviado" />
+                <ScalarProperty Name="RepresentanteLegal" ColumnName="RepresentanteLegal" />
+                <ScalarProperty Name="ActividadEmpresa" ColumnName="ActividadEmpresa" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="NIT" ColumnName="NIT" />
+                <ScalarProperty Name="Registro" ColumnName="Registro" />
+                <ScalarProperty Name="CapAutorizado" ColumnName="CapAutorizado" />
+                <ScalarProperty Name="CapSuscrito" ColumnName="CapSuscrito" />
+                <ScalarProperty Name="CapPagado" ColumnName="CapPagado" />
+                <ScalarProperty Name="Estado" ColumnName="Estado" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Estados">
+            <EntityTypeMapping TypeName="BuhoDBModel.Estados">
+              <MappingFragment StoreEntitySet="Estados">
+                <ScalarProperty Name="ID_Estado" ColumnName="ID_Estado" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Impuestos">
+            <EntityTypeMapping TypeName="BuhoDBModel.Impuestos">
+              <MappingFragment StoreEntitySet="Impuestos">
+                <ScalarProperty Name="ID_Impuesto" ColumnName="ID_Impuesto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Valor" ColumnName="Valor" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Partidas">
+            <EntityTypeMapping TypeName="BuhoDBModel.Partidas">
+              <MappingFragment StoreEntitySet="Partidas">
+                <ScalarProperty Name="ID_Partida" ColumnName="ID_Partida" />
+                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Cheque" ColumnName="Cheque" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Productos">
+            <EntityTypeMapping TypeName="BuhoDBModel.Productos">
+              <MappingFragment StoreEntitySet="Productos">
+                <ScalarProperty Name="ID_Producto" ColumnName="ID_Producto" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+                <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+                <ScalarProperty Name="Precio" ColumnName="Precio" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Proveedores">
+            <EntityTypeMapping TypeName="BuhoDBModel.Proveedores">
+              <MappingFragment StoreEntitySet="Proveedores">
+                <ScalarProperty Name="ID_Proveedor" ColumnName="ID_Proveedor" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="DUI" ColumnName="DUI" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Usuarios">
+            <EntityTypeMapping TypeName="BuhoDBModel.Usuarios">
+              <MappingFragment StoreEntitySet="Usuarios">
+                <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+                <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+                <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+                <ScalarProperty Name="DUI" ColumnName="DUI" />
+                <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+                <ScalarProperty Name="Email" ColumnName="Email" />
+                <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+                <ScalarProperty Name="Clave" ColumnName="Clave" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="Ventas">
+            <EntityTypeMapping TypeName="BuhoDBModel.Ventas">
+              <MappingFragment StoreEntitySet="Ventas">
+                <ScalarProperty Name="ID_Venta" ColumnName="ID_Venta" />
+                <ScalarProperty Name="ID_Cliente" ColumnName="ID_Cliente" />
+                <ScalarProperty Name="ID_Impuesto" ColumnName="ID_Impuesto" />
+                <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="false" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="true" />
+        <DesignerProperty Name="UseLegacyProvider" Value="false" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

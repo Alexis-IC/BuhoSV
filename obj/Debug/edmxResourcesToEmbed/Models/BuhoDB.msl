@@ -1,0 +1,174 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
+  <EntityContainerMapping StorageEntityContainer="BuhoDBModelStoreContainer" CdmEntityContainer="BuhoDBEntities">
+    <EntitySetMapping Name="Clientes">
+      <EntityTypeMapping TypeName="BuhoDBModel.Clientes">
+        <MappingFragment StoreEntitySet="Clientes">
+          <ScalarProperty Name="ID_Cliente" ColumnName="ID_Cliente" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="DUI" ColumnName="DUI" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Compras">
+      <EntityTypeMapping TypeName="BuhoDBModel.Compras">
+        <MappingFragment StoreEntitySet="Compras">
+          <ScalarProperty Name="ID_Compra" ColumnName="ID_Compra" />
+          <ScalarProperty Name="ID_Proveedor" ColumnName="ID_Proveedor" />
+          <ScalarProperty Name="ID_Impuesto" ColumnName="ID_Impuesto" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="CuentaPartida">
+      <EntityTypeMapping TypeName="BuhoDBModel.CuentaPartida">
+        <MappingFragment StoreEntitySet="CuentaPartida">
+          <ScalarProperty Name="ID_CuentaPartida" ColumnName="ID_CuentaPartida" />
+          <ScalarProperty Name="ID_Partida" ColumnName="ID_Partida" />
+          <ScalarProperty Name="ID_Cuenta" ColumnName="ID_Cuenta" />
+          <ScalarProperty Name="ID_Venta" ColumnName="ID_Venta" />
+          <ScalarProperty Name="ID_Compra" ColumnName="ID_Compra" />
+          <ScalarProperty Name="Debe" ColumnName="Debe" />
+          <ScalarProperty Name="Haber" ColumnName="Haber" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Cuentas">
+      <EntityTypeMapping TypeName="BuhoDBModel.Cuentas">
+        <MappingFragment StoreEntitySet="Cuentas">
+          <ScalarProperty Name="ID_Cuenta" ColumnName="ID_Cuenta" />
+          <ScalarProperty Name="Grupo" ColumnName="Grupo" />
+          <ScalarProperty Name="Subgrupo" ColumnName="Subgrupo" />
+          <ScalarProperty Name="Cuenta" ColumnName="Cuenta" />
+          <ScalarProperty Name="Subcuenta" ColumnName="Subcuenta" />
+          <ScalarProperty Name="CuentaDetalle" ColumnName="CuentaDetalle" />
+          <ScalarProperty Name="NombreCuenta" ColumnName="NombreCuenta" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetalleCompras">
+      <EntityTypeMapping TypeName="BuhoDBModel.DetalleCompras">
+        <MappingFragment StoreEntitySet="DetalleCompras">
+          <ScalarProperty Name="ID_DetalleCompra" ColumnName="ID_DetalleCompra" />
+          <ScalarProperty Name="ID_Compra" ColumnName="ID_Compra" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="DetalleVentas">
+      <EntityTypeMapping TypeName="BuhoDBModel.DetalleVentas">
+        <MappingFragment StoreEntitySet="DetalleVentas">
+          <ScalarProperty Name="ID_DetalleVenta" ColumnName="ID_DetalleVenta" />
+          <ScalarProperty Name="ID_Venta" ColumnName="ID_Venta" />
+          <ScalarProperty Name="ID_Producto" ColumnName="ID_Producto" />
+          <ScalarProperty Name="Cantidad" ColumnName="Cantidad" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Empresas">
+      <EntityTypeMapping TypeName="BuhoDBModel.Empresas">
+        <MappingFragment StoreEntitySet="Empresas">
+          <ScalarProperty Name="ID_Empresa" ColumnName="ID_Empresa" />
+          <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+          <ScalarProperty Name="NombreComercial" ColumnName="NombreComercial" />
+          <ScalarProperty Name="NombreAbreviado" ColumnName="NombreAbreviado" />
+          <ScalarProperty Name="RepresentanteLegal" ColumnName="RepresentanteLegal" />
+          <ScalarProperty Name="ActividadEmpresa" ColumnName="ActividadEmpresa" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Telefono" ColumnName="Telefono" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="NIT" ColumnName="NIT" />
+          <ScalarProperty Name="Registro" ColumnName="Registro" />
+          <ScalarProperty Name="CapAutorizado" ColumnName="CapAutorizado" />
+          <ScalarProperty Name="CapSuscrito" ColumnName="CapSuscrito" />
+          <ScalarProperty Name="CapPagado" ColumnName="CapPagado" />
+          <ScalarProperty Name="Estado" ColumnName="Estado" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Estados">
+      <EntityTypeMapping TypeName="BuhoDBModel.Estados">
+        <MappingFragment StoreEntitySet="Estados">
+          <ScalarProperty Name="ID_Estado" ColumnName="ID_Estado" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Impuestos">
+      <EntityTypeMapping TypeName="BuhoDBModel.Impuestos">
+        <MappingFragment StoreEntitySet="Impuestos">
+          <ScalarProperty Name="ID_Impuesto" ColumnName="ID_Impuesto" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Valor" ColumnName="Valor" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Partidas">
+      <EntityTypeMapping TypeName="BuhoDBModel.Partidas">
+        <MappingFragment StoreEntitySet="Partidas">
+          <ScalarProperty Name="ID_Partida" ColumnName="ID_Partida" />
+          <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Cheque" ColumnName="Cheque" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Productos">
+      <EntityTypeMapping TypeName="BuhoDBModel.Productos">
+        <MappingFragment StoreEntitySet="Productos">
+          <ScalarProperty Name="ID_Producto" ColumnName="ID_Producto" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Descripcion" ColumnName="Descripcion" />
+          <ScalarProperty Name="Imagen" ColumnName="Imagen" />
+          <ScalarProperty Name="Precio" ColumnName="Precio" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Proveedores">
+      <EntityTypeMapping TypeName="BuhoDBModel.Proveedores">
+        <MappingFragment StoreEntitySet="Proveedores">
+          <ScalarProperty Name="ID_Proveedor" ColumnName="ID_Proveedor" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="DUI" ColumnName="DUI" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="RazonSocial" ColumnName="RazonSocial" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Usuarios">
+      <EntityTypeMapping TypeName="BuhoDBModel.Usuarios">
+        <MappingFragment StoreEntitySet="Usuarios">
+          <ScalarProperty Name="ID_Usuario" ColumnName="ID_Usuario" />
+          <ScalarProperty Name="Nombre" ColumnName="Nombre" />
+          <ScalarProperty Name="Apellido" ColumnName="Apellido" />
+          <ScalarProperty Name="DUI" ColumnName="DUI" />
+          <ScalarProperty Name="Direccion" ColumnName="Direccion" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Usuario" ColumnName="Usuario" />
+          <ScalarProperty Name="Clave" ColumnName="Clave" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="Ventas">
+      <EntityTypeMapping TypeName="BuhoDBModel.Ventas">
+        <MappingFragment StoreEntitySet="Ventas">
+          <ScalarProperty Name="ID_Venta" ColumnName="ID_Venta" />
+          <ScalarProperty Name="ID_Cliente" ColumnName="ID_Cliente" />
+          <ScalarProperty Name="ID_Impuesto" ColumnName="ID_Impuesto" />
+          <ScalarProperty Name="Fecha" ColumnName="Fecha" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+  </EntityContainerMapping>
+</Mapping>

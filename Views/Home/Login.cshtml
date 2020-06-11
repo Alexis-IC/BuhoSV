@@ -1,0 +1,32 @@
+﻿@model Buho.Models.UsuarioCLS
+@{
+    Page.Title = "Ingresar";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+
+    <div class="col-md-10 m-auto">
+
+        @if (ViewBag.Error != null)
+        {
+            <script>alert('@ViewBag.Error.ToString()')</script>
+        }
+
+        @using (Html.BeginForm("Login", "Home", FormMethod.Post))
+        {
+            <div>
+                @Html.LabelFor(p => p.usuario)
+                @Html.TextBoxFor(p => p.usuario, new { @class = "form-control" })
+                @Html.ValidationMessage("usuario", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(p => p.clave)
+                @Html.PasswordFor(p => p.clave, new { @class = "form-control" })
+                @Html.ValidationMessage("clave", new { @class = "text-danger" })
+            </div><br />
+            <div style="margin:auto">
+                <input type="submit" class="btn btn-primary" value="Ingresar" />
+                @Html.ActionLink("Regresar","Index","Home",null,new { @class="btn btn-danger"})
+            </div>
+        }
+    </div>
+
