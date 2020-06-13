@@ -1,0 +1,56 @@
+﻿@using Buho.Models
+@model ProductoCLS
+@{
+    Page.Title = "Editar Producto";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+
+<div class="col-md-10 m-auto">
+
+    @using (Html.BeginForm("Editar", "Producto", FormMethod.Post,new { @id="frmPrincipal",enctype="multipart/form-data"}))
+    {
+        <div>
+            @Html.LabelFor(p => p.idProducto)
+            @Html.TextBoxFor(p => p.idProducto, new { @class = "form-control", @readOnly = true })
+            @Html.ValidationMessage("idProducto", new { @class = "text-danger" })
+        </div>
+        <div>
+            <br />
+            @Html.LabelFor(p=>p.imagen)
+            <br />
+            <img height="100px" src="@Url.Content(Model.imagen)" alt="@Model.descripcion"><br /><br />
+            @Html.TextBoxFor(p => p.archivoImagen, new { @class = "form-control m-auto", @type = "file", @accept="image/png" })
+            @Html.HiddenFor(p => p.imagen, new { @class = "form-control" })
+            @Html.ValidationMessage("imagen", new { @class = "text-danger" })            
+        </div>
+        <div>
+            @Html.LabelFor(p => p.nombre)
+            @Html.TextBoxFor(p => p.nombre, new { @class = "form-control" })
+            @Html.ValidationMessage("nombre", new { @class = "text-danger" })
+        </div>
+        <div>
+            @Html.LabelFor(p => p.descripcion)
+            @Html.TextBoxFor(p => p.descripcion, new { @class = "form-control" })
+            @Html.ValidationMessage("descripcion", new { @class = "text-danger" })
+        </div>
+        <div>
+            @Html.LabelFor(p => p.precio)
+            @Html.TextBoxFor(p => p.precio, new { @class = "form-control" })
+            @Html.ValidationMessage("precio", new { @class = "text-danger" })
+        </div><br />
+        <div style="margin:auto">
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#confirmModal">Actualizar</button>
+            @Html.ActionLink("Regresar", "Index", "Producto", null, new { @class = "btn btn-danger" })
+        </div>
+    }
+</div>
+
+
+<script>
+    function editar(){document.getElementById("frmPrincipal").submit();}
+</script>
+
+
+
+
+

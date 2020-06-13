@@ -131,8 +131,10 @@
     <Compile Include="App_Start\FilterConfig.cs" />
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="Controllers\ClienteController.cs" />
+    <Compile Include="Controllers\CompraController.cs" />
     <Compile Include="Controllers\EmpresaController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
+    <Compile Include="Controllers\ProductoController.cs" />
     <Compile Include="Controllers\ProveedorController.cs" />
     <Compile Include="Controllers\VentaController.cs" />
     <Compile Include="Filters\VerificarSession.cs" />
@@ -158,6 +160,7 @@
     <Compile Include="Models\Clientes.cs">
       <DependentUpon>BuhoDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\CompraCLS.cs" />
     <Compile Include="Models\Compras.cs">
       <DependentUpon>BuhoDB.tt</DependentUpon>
     </Compile>
@@ -170,6 +173,7 @@
     <Compile Include="Models\DetalleCompras.cs">
       <DependentUpon>BuhoDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\DetalleVentaCLS.cs" />
     <Compile Include="Models\DetalleVentas.cs">
       <DependentUpon>BuhoDB.tt</DependentUpon>
     </Compile>
@@ -186,6 +190,7 @@
     <Compile Include="Models\Partidas.cs">
       <DependentUpon>BuhoDB.tt</DependentUpon>
     </Compile>
+    <Compile Include="Models\ProductoCLS.cs" />
     <Compile Include="Models\Productos.cs">
       <DependentUpon>BuhoDB.tt</DependentUpon>
     </Compile>
@@ -2032,9 +2037,18 @@
     <Content Include="Views\Empresa\Editar.cshtml" />
     <Content Include="Views\Cliente\Editar.cshtml" />
     <Content Include="Views\Proveedor\Editar.cshtml" />
+    <Content Include="Views\Producto\Index.cshtml" />
+    <Content Include="Views\Producto\Agregar.cshtml" />
+    <Content Include="Views\Producto\Editar.cshtml" />
+    <Content Include="Views\Venta\Index.cshtml" />
+    <Content Include="Views\Venta\Editar.cshtml" />
+    <Content Include="Views\Venta\Detalle.cshtml" />
+    <Content Include="Views\Compra\Index.cshtml" />
+    <Content Include="Views\Compra\Detalle.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
+    <Folder Include="dist\img\productos\" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="fonts\glyphicons-halflings-regular.woff2" />

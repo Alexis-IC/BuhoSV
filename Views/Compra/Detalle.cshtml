@@ -1,0 +1,31 @@
+﻿@using Buho.Models
+@model List<CompraCLS>
+@{
+    Page.Title = "Detalle de Compras";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+
+@Html.ActionLink("Regresar", "Index", "Venta", new { @class = "btn btn-danger" })
+
+<br />
+<br />
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>@Html.LabelFor(p => Model[0].nombreProducto)</th>
+            <th>@Html.LabelFor(p => Model[0].cantProducto)</th>
+            <th>@Html.LabelFor(p => Model[0].precio)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (CompraCLS detalle in Model)
+        {
+            <tr>
+                <td>@detalle.nombreProducto</td>
+                <td>@detalle.cantProducto</td>
+                <td>@detalle.precio</td>
+            </tr>
+        }
+    </tbody>
+</table>

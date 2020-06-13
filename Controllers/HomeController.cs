@@ -25,14 +25,12 @@ namespace Buho.Controllers
         {
             using (BuhoDBEntities db = new BuhoDBEntities())
             {
-                Usuarios objUsuario = (from usuario in db.Usuarios
-                            where usuario.Usuario == oUsuarioCLS.usuario
-                            && usuario.Clave == oUsuarioCLS.clave
-                            select usuario).FirstOrDefault();
+                Usuarios objUsuario = db.Usuarios.Where(p => p.Usuario.Equals(oUsuarioCLS.usuario) && p.Clave.Equals(oUsuarioCLS.clave)).FirstOrDefault();
 
                 if(objUsuario == null)
                 {
-                    ViewBag.Error = "Usuario y/o clave incorrectos";
+                    ViewBag.TituloError = "Ingreso fallido";
+                    ViewBag.Error = "El usuario o la contraseña que has introducido son erróneos. Intenta nuevamente";
                     return View();
                 }
                 else
@@ -42,6 +40,12 @@ namespace Buho.Controllers
             }
 
             return RedirectToAction("Index","Home");
+        }
+
+        public ActionResult Salir()
+        {
+            Session["Usuario"] = null;
+            return RedirectToAction("Index");
         }
 
         public ActionResult Registro()
@@ -58,19 +62,22 @@ namespace Buho.Controllers
             }
             else
             {
-                if(ExisteCorreo(oUsuarioCLS.email))
+                if (ExisteDui(oUsuarioCLS.dui))
                 {
-                    ViewBag.Error = "Ya existe un usuario con ese correo.";
+                    ViewBag.TituloError = "Error de registro";
+                    ViewBag.Error = "Ya existe un usuario con ese DUI.";
                     return View(oUsuarioCLS);
                 }
-                else if(ExisteDui(oUsuarioCLS.dui))
+                else if(ExisteCorreo(oUsuarioCLS.email))
                 {
-                    ViewBag.Error = "Ya existe un usuario con ese DUI.";
+                    ViewBag.TituloError = "Error de registro";
+                    ViewBag.Error = "Ya existe un usuario con ese correo.";
                     return View(oUsuarioCLS);
                 }
                 else if(ExisteUsuario(oUsuarioCLS.usuario))
                 {
-                    ViewBag.Error = "Ya existe un registro con ese nombre de usuario.";
+                    ViewBag.TituloError = "Error de registro";
+                    ViewBag.Error = "Ya existe un usuario con ese nombre de usuario.";
                     return View(oUsuarioCLS);
                 }
                 else
@@ -116,7 +123,7 @@ namespace Buho.Controllers
         {
             using (BuhoDBEntities db = new BuhoDBEntities())
             {
-                int nRegistros = db.Usuarios.Where(p => p.Nombre.Equals(usuario)).Count();
+                int nRegistros = db.Usuarios.Where(p => p.Usuario.Equals(usuario)).Count();
                 return nRegistros > 0;
             }
         }

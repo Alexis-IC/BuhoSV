@@ -9,7 +9,7 @@ namespace Buho
         public static void RegisterGlobalFilters(GlobalFilterCollection filters)
         {
             filters.Add(new HandleErrorAttribute());
-            //filters.Add(new VerificarSession());
+            filters.Add(new VerificarSession());
         }
     }
 }

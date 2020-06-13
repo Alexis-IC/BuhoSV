@@ -1,0 +1,40 @@
+﻿@using Buho.Models
+@model ProductoCLS
+@{
+    Page.Title = "Agregar Producto";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+
+    <div class="col-md-10 m-auto">
+
+        @using (Html.BeginForm("Agregar", "Producto", FormMethod.Post,new { @enctype="multipart/form-data"}))
+        {
+            <div>
+                @Html.LabelFor(p => p.imagen)
+                @Html.TextBoxFor(p => p.archivoImagen, new { @class = "form-control",@type="file",@accept="image/png" })
+                @Html.ValidationMessage("archivoImagen", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(p => p.nombre)
+                @Html.TextBoxFor(p => p.nombre, new { @class = "form-control" })
+                @Html.ValidationMessage("nombre", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(p => p.descripcion)
+                @Html.TextBoxFor(p => p.descripcion, new { @class = "form-control" })
+                @Html.ValidationMessage("descripcion", new { @class = "text-danger" })
+            </div>
+            <div>
+                @Html.LabelFor(p => p.precio)
+                @Html.TextBoxFor(p => p.precio, new { @class = "form-control" })
+                @Html.ValidationMessage("precio", new { @class = "text-danger" })
+            </div><br />
+            <div style="margin:auto">
+                <input type="submit" class="btn btn-primary" value="Agregar" />
+                @Html.ActionLink("Regresar", "Index", "Producto", null, new { @class = "btn btn-danger" })
+            </div>
+        }
+    </div>
+
+
+

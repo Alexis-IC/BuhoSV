@@ -146,7 +146,7 @@
                         </div>
                     </div>
 
-                    @if (Session["Usuario"] == null)
+                    @if (usuario == null)
                     {
                         <!-- Sidebar Visitante -->
                         <nav class="mt-2">
@@ -181,13 +181,13 @@
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="/Venta/Agregar" class="nav-link">
+                                    <a href="/Venta/Index" class="nav-link">
                                         <i class="fab fa-sellsy"></i>
                                         <p>Ventas</p>
                                     </a>
                                 </li>
                                 <li class="nav-item">
-                                    <a href="#" class="nav-link">
+                                    <a href="/Compra/Index/" class="nav-link">
                                         <i class="fab fa-shopify"></i>
                                         <p>Compras</p>
                                     </a>
@@ -208,6 +208,12 @@
                                     <a href="/Proveedor/Index" class="nav-link">
                                         <i class="fas fa-luggage-cart"></i>
                                         <p>Proveedores</p>
+                                    </a>
+                                </li>
+                                <li class="nav-item">
+                                    <a href="/Home/Salir" class="nav-link">
+                                        <i class="fas fa-sign-in-alt"></i>
+                                        <p>Cerrar sesión</p>
                                     </a>
                                 </li>
                             </ul>

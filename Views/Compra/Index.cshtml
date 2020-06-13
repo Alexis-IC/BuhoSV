@@ -1,0 +1,51 @@
+﻿@using Buho.Models
+@model List<CompraCLS>
+@{
+    Page.Title = "Compras";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>@Html.LabelFor(p => Model[0].idCompra)</th>
+            <th>@Html.LabelFor(p => Model[0].nombreProveedor)</th>
+            <th>@Html.LabelFor(p => Model[0].nombreImpuesto)</th>
+            <th>@Html.LabelFor(p => Model[0].fecha)</th>
+            <th width="10%">@Html.Label("Operaciones")</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (CompraCLS compra in Model)
+        {
+            <tr>
+                <td>@compra.idCompra</td>
+                <td>@compra.nombreProveedor</td>
+                <td>@compra.nombreImpuesto</td>
+                <td>@compra.fecha.ToString("dd-MM-yyyy")</td>
+                <td>
+                    @Html.ActionLink(" ", "Detalle", "Compra", new { id = compra.idCompra }, new { @class = "fas fa-plus-square btn btn-primary" })
+                    <button type="button" onclick="getId(@compra.idCompra)" class="fas fa-trash-alt btn btn-danger" data-toggle="modal" data-target="#deleteModal"></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@using (Html.BeginForm("Eliminar", "Compra", FormMethod.Post, new { @id = "frmEliminar" }))
+{
+    @Html.Hidden("id");
+}
+
+<script>
+    function getId(id)
+    {
+        document.getElementById("id").value = id;
+    }
+    function eliminar()
+    {
+        document.getElementById("frmEliminar").submit();
+    }
+</script>
+
+

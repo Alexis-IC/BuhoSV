@@ -1,0 +1,55 @@
+﻿@using Buho.Models
+@model List<ProductoCLS>
+@{
+    Page.Title = "Productos";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+
+@Html.ActionLink("Agregar", "Agregar", "Producto", new { @class = "btn btn-primary" })
+<br />
+<br />
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>@Html.LabelFor(p => Model[0].idProducto)</th>
+            <th>@Html.LabelFor(p => Model[0].nombre)</th>
+            <th>@Html.LabelFor(p => Model[0].descripcion)</th>
+            <th>@Html.LabelFor(p => Model[0].precio)</th>
+            <th>@Html.LabelFor(p => Model[0].imagen)</th>
+            <th width="10%">@Html.Label("Operaciones")</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (ProductoCLS producto in Model)
+        {
+        <tr>
+            <td>@producto.idProducto</td>
+            <td>@producto.nombre</td>
+            <td>@producto.descripcion</td>
+            <td>@producto.precio</td>
+            <td><img style="display:block;margin:0 auto;" height="35px" src="@Url.Content(producto.imagen)" alt="@producto.descripcion"></td>
+            <td>
+                @Html.ActionLink(" ", "Editar", "Producto", new { id = producto.idProducto }, new { @class = "far fa-edit btn btn-secondary" })
+                <button type="button" onclick="getId(@producto.idProducto)" class="fas fa-trash-alt btn btn-danger" data-toggle="modal" data-target="#deleteModal"></button>
+            </td>
+        </tr>
+        }
+    </tbody>
+</table>
+
+@using (Html.BeginForm("Eliminar", "Producto", FormMethod.Post, new { @id = "frmEliminar" }))
+{
+    @Html.Hidden("id");
+}
+
+<script>
+    function getId(id)
+    {
+        document.getElementById("id").value = id;
+    }
+    function eliminar()
+    {
+        document.getElementById("frmEliminar").submit();
+    }
+</script>

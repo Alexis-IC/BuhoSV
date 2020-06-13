@@ -1,0 +1,58 @@
+﻿@using Buho.Models
+@model List<VentaCLS>
+@{
+    Page.Title = "Ventas";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+
+@Html.ActionLink("Agregar", "Agregar", "Venta", new { @class = "btn btn-primary" })
+<br />
+<br />
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>@Html.LabelFor(p => Model[0].idVenta)</th>
+            <th>@Html.LabelFor(p => Model[0].nombreCliente)</th>
+            <th>@Html.LabelFor(p => Model[0].duiCliente)</th>
+            <th>@Html.LabelFor(p => Model[0].nombreImpuesto)</th>
+            <th>@Html.LabelFor(p => Model[0].fecha)</th>
+            <th width="15%">@Html.Label("Operaciones")</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (VentaCLS venta in Model)
+        {
+            <tr>
+                <td>@venta.idVenta</td>
+                <td>@venta.nombreCliente</td>
+                <td>@venta.duiCliente</td>
+                <td>@venta.nombreImpuesto</td>
+                <td>
+                    @venta.fecha.ToString("dd-MM-yyyy")
+                </td>
+                <td>
+                    @Html.ActionLink(" ", "Detalle", "Venta", new { id = venta.idVenta }, new { @class = "fas fa-plus-square btn btn-primary" })
+                    @Html.ActionLink(" ", "Editar", "Venta", new { id = venta.idVenta }, new { @class = "far fa-edit btn btn-secondary" })
+                    <button type="button" onclick="getId(@venta.idVenta)" class="fas fa-trash-alt btn btn-danger" data-toggle="modal" data-target="#deleteModal"></button>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@using (Html.BeginForm("Eliminar", "Venta", FormMethod.Post, new { @id = "frmEliminar" }))
+{
+    @Html.Hidden("id");
+}
+
+<script>
+    function getId(id)
+    {
+        document.getElementById("id").value = id;
+    }
+    function eliminar()
+    {
+        document.getElementById("frmEliminar").submit();
+    }
+</script>

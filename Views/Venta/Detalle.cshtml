@@ -1,0 +1,50 @@
+﻿@using Buho.Models
+@model List<DetalleVentaCLS>
+@{
+    Page.Title = "Detalle de Venta";
+    Layout = "~/Views/Shared/_LayoutDefault.cshtml";
+}
+
+@Html.ActionLink("Regresar", "Index", "Compra", new { @class = "btn btn-danger" })
+
+<br />
+<br />
+
+<table class="table table-bordered table-hover">
+    <thead>
+        <tr>
+            <th>@Html.LabelFor(p => Model[0].imagenProducto)</th>
+            <th>@Html.LabelFor(p => Model[0].nombreProducto)</th>
+            <th>@Html.LabelFor(p => Model[0].detalleProducto)</th>
+            <th>@Html.LabelFor(p => Model[0].cantidad)</th>
+            <th>@Html.LabelFor(p => Model[0].precio)</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (DetalleVentaCLS detalle in Model)
+        {
+            <tr>
+                <td><img style="display:block;margin:0 auto;" height="35px" src="@Url.Content(detalle.imagenProducto)" alt="@detalle.detalleProducto"></td>
+                <td>@detalle.nombreProducto</td>
+                <td>@detalle.detalleProducto</td>
+                <td>@detalle.cantidad</td>
+                <td>@detalle.precio</td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@using (Html.BeginForm("Eliminar", "Venta", FormMethod.Post, new { @id = "frmEliminar" }))
+{
+    @Html.Hidden("id");
+}
+
+<script>
+    function getId(id) {
+        document.getElementById("id").value = id;
+    }
+    function eliminar() {
+        document.getElementById("frmEliminar").submit();
+    }
+</script>
+
